@@ -1,17 +1,28 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: %i[new create]
+
+  def index
+    @posts = Post.all
+  end
 
   def new
-    @post = Post.new
-  end  
+    @post = current_user.posts.build
+  end
 
   def create
-    @post = Post.new(params[:post])
+    @post = current_user.posts.build(post_params)
     if @post.save
 
-      redirect_to @post
+      redirect_to posts_path
     else
+      flash[:notice] = 'you have problems'
       render :new
-    end  
-  end  
+    end
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
+  end
 end

@@ -4,12 +4,41 @@
     <title>MembersOnly</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <%= notice %>
+    <% end %>
+
+   <% if flash[:alert] %>
+      <%= alert %>
+    <% end %>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+     <div class="mr-auto"> <%= link_to 'Home', posts_path %></div>
+
+    <div>
+    <% if user_signed_in? %>
+      <%= link_to "New Post", new_post_path  %>
+      <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+
+    <% else %>
+      <span class="mr-2">
+      <%= link_to "Sign In",new_user_session_path %>  
+      </span>
+      <span>
+      <%= link_to "Sign Up", new_user_registration_path %>
+      </span>
+    <% end %>
+
+
+    </div>
+
+</nav>
     <%= yield %>
   </body>
 </html>

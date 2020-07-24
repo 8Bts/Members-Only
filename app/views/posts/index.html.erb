@@ -1,0 +1,25 @@
+<div class ="container">
+
+<% @posts.each do |post| %>
+
+ <div class="card my-2">
+  <div class="card-header">
+     <% if user_signed_in? %>
+    
+  By :  <%= post.user.name %> <br>
+  
+  <% else %>
+
+  By : Secret <br>
+<% end %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= post.title %></h5>
+    <p class="card-text"><%= post.body %></p>
+  </div>
+</div>   
+
+    
+<% end %>
+
+<div class ="container">

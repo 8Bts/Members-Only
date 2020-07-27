@@ -1,0 +1,18 @@
+<div class ="container">
+
+<% @posts.each do |post| %>
+
+ <div class="card my-2">
+  <div class="card-header">
+  By: <%= author_or_secret(post) %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= post.title %></h5>
+    <p class="card-text"><%= post.body %></p>
+  </div>
+</div>   
+
+    
+<% end %>
+
+<div class ="container">

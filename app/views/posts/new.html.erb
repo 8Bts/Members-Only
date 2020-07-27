@@ -1,0 +1,19 @@
+<% if @post.errors.any? %>
+  <% @post.errors.full_messages.each do |msg| %>
+    <%= msg  %>
+  <% end %>
+<% end %>
+<div class = "container text-center">
+<%= form_for @post do |f| %>
+<div class="form_group">
+    <%= f.label :title %><br />
+   <%= f.text_field  :title %><br />
+</div>
+<div class="form_group">
+       <%= f.label "Post" %><br />
+      <%= f.text_area :body %><br />
+    </div>
+  <%= f.submit %>
+<% end %>
+
+</div>

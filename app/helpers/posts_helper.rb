@@ -4,7 +4,6 @@ module PostsHelper
       post.user.name
     else
       'Secret'
-    end  
+    end
   end
-
 end
